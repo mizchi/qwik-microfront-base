@@ -1,30 +1,37 @@
 /** @jsxImportSource react */
+import { useCallback, useState } from "react";
 
-import { qwikify$ } from "@builder.io/qwik-react";
-import { useState } from "react";
-
-function Counter(props: {
+export function Counter(props: {
   other: number;
 }) {
   const [counter, setCounter] = useState(0);
-  return <div>
-    <button type="button" onClick={() => setCounter(counter + 1)}>
+  const onClick = useCallback(() => {
+    setCounter(counter + 1);
+  }, [counter]);
+
+  return (
+    <button type="button" onClick={onClick}>
       {counter} : {props.other + counter}
     </button>
-  </div>
+  );
 }
 
-type Props = {
-  parentCounter: number;
+export function MyButton(props: {
+  onClick: () => void;
+  children?: React.ReactNode;
+}) {
+  // const [counter, setCounter] = useState(0);
+  const onClick = useCallback(() => {
+    console.log("react:clicked");
+    props.onClick();
+  }, []);
+
+  return (
+    <button type="button" onClick={onClick}>
+      InnerReact
+      {
+        props.children
+      }
+    </button>
+  );
 }
-
-export const ReactApp = qwikify$((props: Props) => {
-  console.log("hydrate react");
-  return <div>
-    Hello React
-    <Counter other={props.parentCounter} />
-  </div>
-}, {
-  eagerness: "hover"
-});
-

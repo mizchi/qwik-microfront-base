@@ -8,16 +8,16 @@ const EagerButton = component$(() => {
   useVisibleTask$(() => {
     const handler = (event: Event) => {
       event.preventDefault();
-      window.open('http://qwik.builder.io');
+      console.log("eager click");
     };
     aHref.value!.addEventListener('click', handler);
     return () => aHref.value!.removeEventListener('click', handler);
   });
 
   return (
-    <a href="/" ref={aHref}>
-      click me!
-    </a>
+    <button type="button" ref={aHref}>
+      Eager button
+    </button>
   );
 });
 
@@ -44,8 +44,9 @@ export default component$(() => {
           count.value--;
         }}>-1</button>
         <button type="button" onClick$={handler}>Click Me</button>
-
-        <EagerButton />
+        <div>
+          <EagerButton />
+        </div>
       </div>
     </>
   );
