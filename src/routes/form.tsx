@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
-import z from "zod";
+import z from "zod"
 // import { InitialValues } from '@modular-forms/qwik';
 
 // const formSchema = z.object({

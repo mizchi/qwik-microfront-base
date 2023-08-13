@@ -2,7 +2,6 @@ import { component$, useSignal } from "@builder.io/qwik";
 import { useNavigate, type DocumentHead } from "@builder.io/qwik-city";
 import { Counter, MyButton } from "../../integrations/react";
 import { qwikify$ } from "@builder.io/qwik-react";
-import { qwikify$ as myqwikify } from "../../myqwikify/qwikify";
 
 const QCounter = qwikify$(Counter, { eagerness: "hover" });
 const QButton = qwikify$(MyButton, {eagerness: "hover"});
