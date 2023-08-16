@@ -24,16 +24,36 @@ export default component$(() => {
   return (
     <>
       <header>
-        <Link href="/">Home</Link>
-        |
-        <Link href="/react/">/react</Link>
-        |
-        <Link href="/dyn/xxx">/dyn/xxx</Link>
-        |
-        <Link href="/dyn/yyy">/dyn/yyy</Link>
-
+        <div>
+          <h1>Qwik City - Microfront Base</h1>
+        </div>
+        <div>
+          Qwik -
+          <Link href="/">Home</Link>
+          |
+          <Link href="/with-server">With Server</Link>
+          |
+          <Link href="/dyn/xxx">/dyn/xxx</Link>
+          |
+          <Link href="/dyn/yyy">/dyn/yyy</Link>
+        </div>
+        <div>
+          React -
+          <Link href="/react/">/react</Link>
+          <Link href="/react-routed/">/react-routed</Link>
+        </div>
+        <div>
+          Vue -
+          <Link href="/vue">/vue</Link>
+          |
+          <Link href="/vue-routed/">/vue-routed</Link>
+        </div>
+        <div>
+          Svelte -
+          <Link href="/svelte/">/svelte</Link>
+        </div>
       </header>
-
+      <hr />
       <main>
         <Slot />
       </main>

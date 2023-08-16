@@ -1,20 +1,25 @@
-import { component$, useSignal } from "@builder.io/qwik";
+import { component$, useSignal, $ } from "@builder.io/qwik";
 import { useNavigate, type DocumentHead } from "@builder.io/qwik-city";
-import { Counter, MyButton } from "../../integrations/react";
+import { Counter, MyButton } from "../../components/ReactMisc";
 import { qwikify$ } from "@builder.io/qwik-react";
 
 const QCounter = qwikify$(Counter, { eagerness: "hover" });
 const QButton = qwikify$(MyButton, {eagerness: "hover"});
+// const QAppRoot = qwikify$(AppRoot, {eagerness: "hover"});
 
 export default component$(() => {
-  const counter = useSignal(0);
   const navigate = useNavigate();
+  const onNavigate = $((href: string) => {
+    console.log("react:navigate", href);
+    navigate(href);
+  });
+  const counter = useSignal(1);
   return (
     <>
-      <h1>React Demo</h1>
       <button type="button" onClick$={() => counter.value += 1}>
         qwik-side-counter: {counter.value}
       </button>
+
       <QCounter other={counter.value} client:load/>
       <QButton onClick$={() => {
         counter.value += 1;
@@ -22,11 +27,6 @@ export default component$(() => {
       }}>
         children from qwik
       </QButton>
-
-      <div>
-        <hr />
-        <a href="/">Root</a>
-      </div>
     </>
   );
 });

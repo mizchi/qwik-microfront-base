@@ -24,22 +24,24 @@ const EagerButton = component$(() => {
 export default component$(() => {
   const count = useSignal(0);
   const handler = $(() => console.log("hello!"));
-  useVisibleTask$(() => {
-    console.log("visible", handler);
-    // debugger;
-    handler();
-    return () => {
-      console.log("invisible");
-    };
-  });
+  // useVisibleTask$(() => {
+  //   console.log("visible", handler);
+  //   // debugger;
+  //   handler();
+  //   return () => {
+  //     console.log("invisible");
+  //   };
+  // });
   return (
     <>
       <div>
         <h1>Welcome to Qwik</h1>
         <div>counter {count.value}</div>
+
         <button type="button" onClick$={() => {
           count.value++;
         }}>+1</button>
+        
         <button type="button" onClick$={() => {
           count.value--;
         }}>-1</button>

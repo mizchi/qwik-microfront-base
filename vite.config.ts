@@ -4,24 +4,28 @@ import { qwikCity } from "@builder.io/qwik-city/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { qwikReact } from "@builder.io/qwik-react/vite";
 import sveltePreprocess from "svelte-preprocess";
-// import path from "path";
-// import { svelte } from "vite-plugin-svelte";
-import {qwikSvelte} from "./src/vite"
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig((options) => {
-  // console.log('[viteDefine]', options);
   return {
+    build: {
+      rollupOptions: {
+        external: [
+          "fs",
+        ]
+      }
+    },
     plugins: [
-      qwikSvelte({
+      svelte({
         preprocess: sveltePreprocess(),
-        css: "injected"
+        compilerOptions: {
+          // @ts-ignore
+          generate: options.mode === "ssr" ? "ssr" : "dom",
+          hydratable: true,
+        },
       }),
-      // svelte({
-      //   preprocess: [sveltePreprocess({typescript: true})],
-      //   compilerOptions: {
-      //     generate: options.mode === "ssr" ? "ssr" : "dom",
-      //   }
-      // }),
+      vue({}),
       qwikCity(),
       qwikVite(),
       tsconfigPaths(),
