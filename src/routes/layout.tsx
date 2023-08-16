@@ -40,6 +40,7 @@ export default component$(() => {
         <div>
           React -
           <Link href="/react/">/react</Link>
+          |
           <Link href="/react-routed/">/react-routed</Link>
         </div>
         <div>
@@ -51,6 +52,8 @@ export default component$(() => {
         <div>
           Svelte -
           <Link href="/svelte/">/svelte</Link>
+          |
+          <Link href="/svelte-routed/">/svelte-routed</Link>
         </div>
       </header>
       <hr />
